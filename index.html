@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fractal Zoom - IFS Visualization</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Fractal Zoom - IFS Visualization</h1>
+            <p class="subtitle">Elementary Fractal Geometry 7: An algorithm visualizing the magnification flow</p>
+        </header>
+
+        <div class="controls-panel">
+            <div class="control-group">
+                <label for="fractal-select">Select Fractal:</label>
+                <select id="fractal-select">
+                    <option value="">-- Select a fractal --</option>
+                    <option value="A1_chair">A1 - Chair</option>
+                    <option value="A2_crosstile">A2 - Cross Tile</option>
+                    <option value="A3_fracsquareH">A3 - Frac Square H</option>
+                    <option value="A4_crossings">A4 - Crossings</option>
+                    <option value="A5_levy">A5 - Levy</option>
+                    <option value="B1_figure1">B1 - Figure 1</option>
+                    <option value="B2_fencing">B2 - Fencing</option>
+                    <option value="B3_forest">B3 - Forest</option>
+                    <option value="B4_thicket">B4 - Thicket</option>
+                    <option value="B5_Cantor68">B5 - Cantor 68</option>
+                    <option value="B6_fireworks">B6 - Fireworks</option>
+                    <option value="B7_bubbles">B7 - Bubbles</option>
+                    <option value="B8_patches">B8 - Patches</option>
+                    <option value="C1_Notes25">C1 - Notes 25</option>
+                    <option value="C2_Koch21">C2 - Koch 21</option>
+                    <option value="C3_Cantor24">C3 - Cantor 24</option>
+                    <option value="C4_Overlap28">C4 - Overlap 28</option>
+                    <option value="C5_Islands88">C5 - Islands 88</option>
+                    <option value="C6_Jungle135">C6 - Jungle 135</option>
+                    <option value="D1_hexa32">D1 - Hexa 32</option>
+                    <option value="D2_crabs91">D2 - Crabs 91</option>
+                    <option value="D3_Leaves166">D3 - Leaves 166</option>
+                    <option value="D4_nonperTile">D4 - Non-Periodic Tile</option>
+                    <option value="D5_Overlap">D5 - Overlap</option>
+                    <option value="E1_OvPisot20">E1 - Ov Pisot 20</option>
+                    <option value="E2_OvPisot23">E2 - Ov Pisot 23</option>
+                    <option value="E3_OvDragon41">E3 - Ov Dragon 41</option>
+                    <option value="F1_fatfireworks">F1 - Fat Fireworks</option>
+                    <option value="F2_slimIrrat">F2 - Slim Irrat</option>
+                    <option value="F3_FatIrrat">F3 - Fat Irrat</option>
+                    <option value="F4_selfaffineRot">F4 - Self-Affine Rot</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="iterations">Number of Magnifications:</label>
+                <input type="number" id="iterations" value="6" min="1" max="1000">
+            </div>
+
+            <div class="control-group">
+                <label for="pause-time">Pause Time (ms):</label>
+                <input type="number" id="pause-time" value="500" min="0" max="5000" step="100">
+            </div>
+
+            <div class="control-group">
+                <label for="weight">Weight Parameter (w):</label>
+                <input type="number" id="weight" value="3" min="0" max="10" step="0.1">
+                <small>0 = uniform, 3 = good for finding dense neighborhoods</small>
+            </div>
+
+            <div class="control-group">
+                <label for="ratio">Window Ratio:</label>
+                <input type="number" id="ratio" value="3" min="1" max="10" step="0.1">
+            </div>
+
+            <div class="button-group">
+                <button id="start-btn" class="btn btn-primary">Start Visualization</button>
+                <button id="stop-btn" class="btn btn-secondary" disabled>Stop</button>
+                <button id="reset-btn" class="btn btn-secondary">Reset</button>
+            </div>
+
+            <div class="status-info">
+                <div>Iteration: <span id="iteration-count">0</span></div>
+                <div>Neighbors: <span id="neighbor-count">0</span></div>
+            </div>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="fractal-canvas"></canvas>
+        </div>
+
+        <div class="info-panel">
+            <h3>Instructions</h3>
+            <p>This web application visualizes the local structure of self-similar fractals using virtual magnification.</p>
+            <p>Select a fractal from the dropdown and click "Start Visualization" to begin. The visualization will show magnifications of the fractal structure.</p>
+            <p><strong>Note:</strong> Fractal data files (.mat) need to be converted to JSON format. Use the converter tool or load JSON files directly.</p>
+        </div>
+    </div>
+
+    <script src="math-utils.js"></script>
+    <script src="fractal-core.js"></script>
+    <script src="scenery.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
